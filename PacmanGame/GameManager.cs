@@ -18,31 +18,28 @@ namespace PacmanGame
         {
             this.g = g;
             Drawing = new DrawingManager(g);
-            Board = new BoardManager(g);
+            Board = new BoardManager();
         }
 
         public void StartGame()
         {
             Board.Setup();
             Drawing.DrawBoard();
+            Board.Pacman.DrawCharacter(g);
+            Board.RedGhost.DrawCharacter(g);
+            Board.BlueGhost.DrawCharacter(g);
+            Board.OrangeGhost.DrawCharacter(g);
+            Board.PinkGhost.DrawCharacter(g);
         }
 
         public bool StepGame()
         {
-            Board.MoveCharacter(Board.Pacman);
-            Board.MoveCharacter(Board.RedGhost);
-            Board.MoveCharacter(Board.BlueGhost);
-            Board.MoveCharacter(Board.PinkGhost);
-            Board.MoveCharacter(Board.OrangeGhost);
+            Board.Pacman.ChooseMovement();
+            Board.RedGhost.ChooseMovement();
+            Board.BlueGhost.ChooseMovement();
+            Board.OrangeGhost.ChooseMovement();
+            Board.PinkGhost.ChooseMovement();
             return Drawing.UpdateBoard(Board);
-            //DeltaTime(500);
-        }
-
-        public void DeltaTime(double milliseconds = 1000)
-        {
-            var start = DateTime.Now;
-            var end = start.AddMilliseconds(milliseconds);
-            while (DateTime.Now <= end) { }
         }
     }
 }

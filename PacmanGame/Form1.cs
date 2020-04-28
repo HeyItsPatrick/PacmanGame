@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +6,8 @@ using System.Windows.Forms;
 //TODO: Set finding next move as data member of Character
 //TODO: Use imagegrid and draw on top of gameBoard, that'll help make it less "flashy"
 //      Keep GameBoard matrix for pellets and boundaries
+//TODO: Set all the characters on their own threads, but collision detection will be a damn bitch, so maybe not
+//TODO: Set win condition upon all pellets being collected
 
 namespace PacmanGame
 {
@@ -42,10 +38,10 @@ namespace PacmanGame
 
                 gameOver = await Task.Run(game.StepGame);
                 label1.Text = game.Board.Pacman.ToString();
-                label2.Text = game.Board.RedGhost.ToString();
-                label3.Text = game.Board.BlueGhost.ToString();
-                label4.Text = game.Board.OrangeGhost.ToString();
-                label5.Text = game.Board.PinkGhost.ToString();
+                //label2.Text = game.Board.RedGhost.ToString();
+                //label3.Text = game.Board.BlueGhost.ToString();
+                //label4.Text = game.Board.OrangeGhost.ToString();
+                //label5.Text = game.Board.PinkGhost.ToString();
                 counter++;
                 //if (counter > 100) gameOver = true;
             }
