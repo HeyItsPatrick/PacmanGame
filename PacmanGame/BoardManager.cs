@@ -1,8 +1,7 @@
-﻿using System.Drawing;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace PacmanGame
 {
-    //Handles board data; player positions, refreshing graphics
     public class BoardManager
     {
         public Character Pacman { get; private set; }
@@ -11,8 +10,7 @@ namespace PacmanGame
         public Character PinkGhost { get; private set; }
         public Character RedGhost { get; private set; }
 
-        //Build Characters and set positions
-        public void Setup()
+        public BoardManager(GraphicsDevice graphicsDevice, Texture2D spriteSheet)
         {
             for (int r = 0; r < Globals.GameBoard.GetLength(0); r++)
             {
@@ -21,19 +19,19 @@ namespace PacmanGame
                     switch (Globals.GameBoard[r, c])
                     {
                         case (int)Globals.BlockTypes.Pacman:
-                            Pacman = new Character { Row = r, Column = c, Y = r * DrawingManager.BLOCK_SIZE, X = c * DrawingManager.BLOCK_SIZE, Type = Globals.BlockTypes.Pacman, CharacterColor = Color.Yellow };
-                            goto case -1;
-                        case (int)Globals.BlockTypes.RedGhost:
-                            RedGhost = new Character { Row = r, Column = c, Y = r * DrawingManager.BLOCK_SIZE, X = c * DrawingManager.BLOCK_SIZE, Type = Globals.BlockTypes.RedGhost, CharacterColor = Color.Red };
+                            Pacman = new Character(graphicsDevice, spriteSheet, 0, 4, 4, 3) { Row = r, Column = c, Y = r * Globals.BLOCK_SIZE, X = c * Globals.BLOCK_SIZE, Type = Globals.BlockTypes.Pacman };
                             goto case -1;
                         case (int)Globals.BlockTypes.BlueGhost:
-                            BlueGhost = new Character { Row = r, Column = c, Y = r * DrawingManager.BLOCK_SIZE, X = c * DrawingManager.BLOCK_SIZE, Type = Globals.BlockTypes.BlueGhost, CharacterColor = Color.DarkBlue };
-                            goto case -1;
-                        case (int)Globals.BlockTypes.PinkGhost:
-                            PinkGhost = new Character { Row = r, Column = c, Y = r * DrawingManager.BLOCK_SIZE, X = c * DrawingManager.BLOCK_SIZE, Type = Globals.BlockTypes.PinkGhost, CharacterColor = Color.Pink };
+                            BlueGhost = new Character(graphicsDevice, spriteSheet, 0, 2, 4, 1) { Row = r, Column = c, Y = r * Globals.BLOCK_SIZE, X = c * Globals.BLOCK_SIZE, Type = Globals.BlockTypes.BlueGhost };
                             goto case -1;
                         case (int)Globals.BlockTypes.OrangeGhost:
-                            OrangeGhost = new Character { Row = r, Column = c, Y = r * DrawingManager.BLOCK_SIZE, X = c * DrawingManager.BLOCK_SIZE, Type = Globals.BlockTypes.OrangeGhost, CharacterColor = Color.Orange };
+                            OrangeGhost = new Character(graphicsDevice, spriteSheet, 0, 3, 4, 1) { Row = r, Column = c, Y = r * Globals.BLOCK_SIZE, X = c * Globals.BLOCK_SIZE, Type = Globals.BlockTypes.OrangeGhost };
+                            goto case -1;
+                        case (int)Globals.BlockTypes.PinkGhost:
+                            PinkGhost = new Character(graphicsDevice, spriteSheet, 0, 1, 4, 1) { Row = r, Column = c, Y = r * Globals.BLOCK_SIZE, X = c * Globals.BLOCK_SIZE, Type = Globals.BlockTypes.PinkGhost };
+                            goto case -1;
+                        case (int)Globals.BlockTypes.RedGhost:
+                            RedGhost = new Character(graphicsDevice, spriteSheet, 0, 0, 4, 1) { Row = r, Column = c, Y = r * Globals.BLOCK_SIZE, X = c * Globals.BLOCK_SIZE, Type = Globals.BlockTypes.RedGhost };
                             goto case -1;
                         case -1:
                             Globals.GameBoard[r, c] = (int)Globals.BlockTypes.Empty;
@@ -43,8 +41,6 @@ namespace PacmanGame
                     }
                 }
             }
-
-            Globals.GameScore = 0;
         }
 
         public static bool ValidateMovement(Globals.Directions dir, int row, int column)
@@ -54,13 +50,13 @@ namespace PacmanGame
             switch (dir)
             {
                 case Globals.Directions.Up:
-                    rowInc++;
+                    rowInc--;
                     break;
                 case Globals.Directions.Right:
                     colInc++;
                     break;
                 case Globals.Directions.Down:
-                    rowInc--;
+                    rowInc++;
                     break;
                 case Globals.Directions.Left:
                     colInc--;

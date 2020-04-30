@@ -4,10 +4,12 @@ namespace PacmanGame
 {
     public static class Globals
     {
+        public const int BLOCK_SIZE = 40;
         public static Random RandSeed = new Random();
         public static int GameScore;
         //9=outside 0=pellet 1=wall 2=pacman 3=empty 4=red_ghost 5=blue_ghost 6=pink_ghost 7=orange_ghost
-        public static int[,] GameBoard { get; set; } = {{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 ,9, 9, 9, 9, 9, 9, 9, 9, 9, 9},
+        public static int[,] GameBoard { get; set; } = 
+            {{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 ,9, 9, 9, 9, 9, 9, 9, 9, 9, 9},
             {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 ,9, 9, 9, 9, 9, 9, 9, 9, 9, 9},
             {9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, 1, 1, 1, 1, 9},
             {9, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 ,0, 0, 0, 0, 0, 0, 0, 0, 1, 9},
@@ -29,7 +31,8 @@ namespace PacmanGame
             {9, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 9},
             {9, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 9},
             {9, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9},
-            {9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9}};
+            {9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9},
+            {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 ,9, 9, 9, 9, 9, 9, 9, 9, 9, 9}};
 
         public enum BlockTypes
         {
@@ -46,10 +49,10 @@ namespace PacmanGame
 
         public enum Directions
         {
-            Up = 1,
-            Right = 2,
-            Down = 3,
-            Left = 4
+            Up = 0,
+            Right = 1,
+            Down = 2,
+            Left = 3
         }
     }
 }
