@@ -6,7 +6,6 @@ namespace PacmanGame
     {
         public const int BLOCK_SIZE = 40;
         public static Random RandSeed = new Random();
-        public static int GameScore;
         //9=outside 0=pellet 1=wall 2=pacman 3=empty 4=red_ghost 5=blue_ghost 6=pink_ghost 7=orange_ghost
         public static int[,] GameBoard { get; set; } = 
             {{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 ,9, 9, 9, 9, 9, 9, 9, 9, 9, 9},
@@ -53,6 +52,14 @@ namespace PacmanGame
             Right = 1,
             Down = 2,
             Left = 3
+        }
+
+        public enum GameState
+        {
+            Menu =0,
+            Running=1,
+            Win=2,
+            Lose=3
         }
     }
 }

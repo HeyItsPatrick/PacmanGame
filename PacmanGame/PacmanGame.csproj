@@ -45,6 +45,7 @@
     <Compile Include="BackgroundTile.cs" />
     <Compile Include="BoardManager.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="DrawingManager.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
